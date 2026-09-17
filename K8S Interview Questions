@@ -1,0 +1,8 @@
+1] What is the difference between a Kubernetes control plane and worker nodes?
+
+The Kubernetes control plane, also called the master plane, manages and controls the Kubernetes cluster. It handles tasks such as scheduling, maintaining the desired state, and managing the cluster. In managed services like AKS and EKS, the cloud provider manages the control plane.
+
+Worker nodes are the machines where our application workloads run. They run components such as Pods, containers, and the kubelet. Depending on the cluster setup, we are responsible for managing or configuring the worker nodes and the applications running on them.
+
+2] What is a Pod in Kubernetes?
+A Pod is the smallest deployable unit in Kubernetes. It contains one or more containers that share the same network, storage, and lifecycle. Although we can create a Pod directly, in real projects we usually use controllers such as Deployments, ReplicaSets, and StatefulSets to manage Pods, scaling, and recovery.
