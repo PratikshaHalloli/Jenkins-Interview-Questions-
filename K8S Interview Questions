@@ -6,3 +6,22 @@ Worker nodes are the machines where our application workloads run. They run comp
 
 2] What is a Pod in Kubernetes?
 A Pod is the smallest deployable unit in Kubernetes. It contains one or more containers that share the same network, storage, and lifecycle. Although we can create a Pod directly, in real projects we usually use controllers such as Deployments, ReplicaSets, and StatefulSets to manage Pods, scaling, and recovery.
+
+3] what is difference between docker and kubernetes?
+	docker is container platform and kubernetes is container orchestration platform. kubernetes is advance tool as in container. kubernetes have features like auto-scaling, auto healing and multiple host. which docker does not have. auto-scaling means if load is increasing on a container then kubernetes have a feature like auto-scaling which automaticaliy increase the containers, this feature is not present in docker. 2nd is auto healing. docker container are emphemerial in nature thats why if any container goes down then application is also goes down. this is major drawback in docker but in kubernetes it have a auto healing quality, if container goes down then kubernetes automatically create another pod. 
+
+4] what is k8s service what are the type of service?
+	the idea of service is to group a set of pods endpoint into a single resource. you will get a stable ip address, using that stable ip address internal clinet in cluster can communicate with pods in service. every pod has a ip address associate with them. in deployment pods can come and go , and there ip address are changed. so using pods ip directly doesn't make sense.with a service you get a stable ip address that last for life of service. request are balanced across the pods in service.
+type of service:
+1)clusterIp= internal client send a request to cluster's stable Ip address.
+2)nodeport= client send a request to ip address of node. one or more nodeport valuees are specified by service
+3)load-balncing=client send a request to ip address of load-balancer.
+4)external= client send a request to dns name of service.
+5)headless= headless is a service where you want group of pods and not the stable ip address.
+
+5] how do you handle k8s cluster security?
+	we have done lot of thing for security of cluster. we have secure secretes. we have secure pod communication using egrees and ingress. we also use Rbac policy. rbac stand for role based access control. which define which user has what amount of access to the resource. for multiple projects and multiple people use same k8s cluster, we have used namespaces to enable multi-tenancy support.audit logging enable to monitor k8s security.
+
+6] you have an application deployed on k8s that is experencing increased traffic,how would you scale the application to handle the increased load?
+	first identify bottleneck, i will check cluster to analyse resource including cpu, memory and networking to determine a limited factor. once i know this, if bottleneck is cpu and memory i would scale application horizontaly, using horinzontal pod autoscaler, if bottleneck is resource specific i would vertically scale the application by upgrading resources allocated to pod. other than this i will scale the nodes using node auto scaler.
+	
